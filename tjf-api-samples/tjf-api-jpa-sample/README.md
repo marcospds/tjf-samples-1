@@ -2,7 +2,7 @@
 
 # Contexto
 
-Para exemplificar a biblioteca __API JPA__ vamos utilizar o mesmo projeto criado para o _sample_ da bilioteca __API Context__ disponível em nosso [GitHub][tjf-api-context-sample].
+Para exemplificar a biblioteca __API JPA__ vamos utilizar o mesmo projeto criado para o _sample_ da biblioteca __API Context__ disponível em nosso [GitHub][tjf-api-context-sample].
 
 > É muito importante que, antes de iniciar o desenvolvimento deste _sample_, você tenha lido e compreendido o _sample_ do __API Context__.
 
@@ -21,18 +21,24 @@ A biblioteca __API JPA__ irá auxiliar na criação deste repositório e será r
 Além das já existentes, precisamos adicionar as seguintes dependências no arquivo `pom.xml` do projeto:
 
 ```xml
+<parent>
+  <groupId>com.totvs.tjf</groupId>
+  <artifactId>tjf-boot-starter</artifactId>
+  <version>1.11.0-RELEASE</version>
+</parent>
+```
+
+```xml
 <!-- Spring -->
 <dependency>
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter-data-jpa</artifactId>
-  <version>2.1.4.RELEASE</version>
 </dependency>
 
 <!-- TJF -->
 <dependency>
   <groupId>com.totvs.tjf</groupId>
   <artifactId>tjf-api-jpa</artifactId>
-  <version>0.2.0-SNAPSHOT</version>
 </dependency>
 
 <!-- H2 Database -->
@@ -302,14 +308,12 @@ Muito mais simples e fácil, não?
 
 Com isso terminamos nosso _sample_, fique a vontade para enriquecê-lo utilizando outros recursos propostos pelo componente __API JPA__ e enviar sugestões e melhorias para o projeto __TOTVS Java Framework__.
 
-> O conteúdo deste _sample_ está em nosso repositório do [GitHub][github].
 
-
-[tjf-api-context-sample]: https://github.com/totvs/tjf-api-context-sample
+[tjf-api-context-sample]: https://github.com/totvs/tjf-samples/tree/master/tjf-api-samples/tjf-api-context-sample
 [guia-api-totvs]: http://tdn.totvs.com/x/nDUxE
 [h2]: https://www.h2database.com
 [hibernate]: https://hibernate.org
 [spring]: https://spring.io
 [@EnableJpaRepositories]: https://docs.spring.io/spring-data/data-jpa/docs/current/api/org/springframework/data/jpa/repository/config/EnableJpaRepositories.html
-[tjf-api-context]: https://tjf.totvs.com.br/wikiV020/tjf-api-context
+[tjf-api-context]: https://tjf.totvs.com.br/wiki/tjf-api-context
 [github]: https://github.com/totvs/tjf-api-jpa-sample

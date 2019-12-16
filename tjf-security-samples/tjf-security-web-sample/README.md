@@ -14,7 +14,7 @@ Para fácil entendimento do componente **Security Web** vamos seguir a sequencia
 
 ### Dependências
 
-Primeiramente configure o repositório do TJF em seu pom.xml.
+Primeiramente configure o repositório do TJF em seu `pom.xml`.
 
 ```xml
 <repositories>
@@ -26,28 +26,37 @@ Primeiramente configure o repositório do TJF em seu pom.xml.
 </repositories>
 ```
 
-Para utilização do componente de segurança do TJF é necessário inserir a seguinte dependência em seu arquivo pom.xml.
+Adicione o _parent_ do TJF.
+
+```xml
+<parent>
+	<groupId>com.totvs.tjf</groupId>
+	<artifactId>tjf-boot-starter</artifactId>
+	<version>1.11.0-RELEASE</version>
+</parent>
+```
+
+Para utilização do componente de segurança do TJF é necessário inserir a seguinte dependência em seu arquivo `pom.xml`.
 
 ```xml
 <dependency>
     <groupId>com.totvs.tjf</groupId>
     <artifactId>tjf-security-web</artifactId>
-    <version>0.2.0-RELEASE</version>
 </dependency>
 ```
 
-Em nosso exemplo iremos utilizar um serviço web para disponibilizar os endpoints, para isso adicione a seguinte dependência em seu arquivo pom.xml.
+Em nosso exemplo iremos utilizar um serviço web para disponibilizar os endpoints, para isso adicione a seguinte dependência em seu arquivo `pom.xml`.
 
 ```xml
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-web</artifactId>
-    <version>2.1.3.RELEASE</version>
 </dependency>
 ```
 ### Configurando integração com o *Authorization Service*
 
 No arquivo `application.yml` precisamos informar nas propriedades na nossa aplicação, quais as URI que serão usadas, para que nossa aplicação integre com o *Authorization Service*.
+
 ```yml
 security:
   access:
@@ -57,12 +66,17 @@ security:
     resource:
       id: 'authorization_api'
       jwk:
-        key-set-uri: <O URI para obter chaves de verificação para validação do token JWT.>
+        key-set-uri: <O URI para obter chaves de verificação para validação do token JWT> 
+        
 ```
+
+> **Propriedade opcional**  
+A propriedade `security.access.api.permissions-uri` é necessária apenas se no código for utilizada a anotação `@PreAuthorize` com a função `hasPermission()`. 
+
 
 ### Criando o modelo
 
-No nosso exemplo usaremos o enum `Type`, que defini os tipos de maquinas que teremos em nossa fábrica.
+No nosso exemplo usaremos o enum `Type`, que define os tipos de máquinas que teremos em nossa fábrica.
 
 ```java
 public enum Type {
@@ -162,6 +176,8 @@ Nela criaremos 3 endpoints:
 * Um sem validação de autorização, irá verificar apenas a autenticação do usuário. Nela usaremos apenas a anotação `@GetMapping`.
 * Um com autorização por *role*, que irá verificar se o usuário tem determinada autorização em determinada *role*. Para isso usaremos alem da anotação `@PostMapping` usaremos a anotação `@RolesAllowed`, passando de parâmetro para ela a *role*.
 * E por fim dois outros endpoints com autorização por *permission*, que irá verificar se o usuário tem autorização em determinada *permission*. Para isso usaremos alem da anotação `@PostMapping` a anotação `@PreAuthorize`, passando para ela o método `hasPermission` e que receberá qual a *permission* que queremos validar.
+
+> **Lembrando**: O uso de *permission* depende da correta configuração da propriedade `security.access.api.permissions-uri` no arquivo de configurações `application.yml`.
 
 ```java
 @RestController
@@ -324,10 +340,10 @@ Vamos executar novamente a request, você deve conseguir parar todas maquinas co
 ]
 ```
 
-**Importante:** Os retornos de erros seguirão o padrão do [API Core](framework/tjf-api-core) caso você o use nos endpoints do seu projeto.
+**Importante:** Os retornos de erros seguirão o padrão do [API Core](https://tjf.totvs.com.br/wiki/tjf-api-core) caso você o use nos endpoints do seu projeto.
 
 ## Isso é tudo pessoal!
 
-Com isso terminamos nosso exemplo, fique a vontade para incrementar o exemplo utilizando todos recursos proposto pelo componente **Security Web**, caso necessário utilize nossa [documentação](framework/tjf-security-web). Este exemplo está em nosso repositório no [GitHub](https://github.com/totvs/tjf-security-sample).
+Com isso terminamos nosso exemplo, fique a vontade para incrementar o exemplo utilizando todos recursos proposto pelo componente **Security Web**, caso necessário utilize nossa [documentação](https://tjf.totvs.com.br/wiki/tjf-security-web).
 
 E fique a vontade para mandar sugestões e melhorias para o projeto TJF.

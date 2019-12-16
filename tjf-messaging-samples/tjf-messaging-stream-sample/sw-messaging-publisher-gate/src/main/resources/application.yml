@@ -15,5 +15,12 @@ spring:
             spring:
               rabbit:
                 host: localhost
+                
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,messaging                
+                
 server:
   port: 8080

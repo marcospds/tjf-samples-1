@@ -17,18 +17,24 @@ Para criação deste exemplo, vamos iniciar a explicação a partir de um projet
 Além da dependência do [Spring][spring], para utilização do módulo __API Context__ é necessário inserir as seguintes dependências no arquivo `pom.xml` do projeto:
 
 ```xml
+<parent>
+  <groupId>com.totvs.tjf</groupId>
+  <artifactId>tjf-boot-starter</artifactId>
+  <version>1.11.0-RELEASE</version>
+</parent>
+```
+
+```xml
 <!-- Spring -->
 <dependency>
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter-web</artifactId>
-  <version>2.1.4.RELEASE</version>
 </dependency>
 
 <!-- TJF -->
 <dependency>
   <groupId>com.totvs.tjf</groupId>
   <artifactId>tjf-api-core</artifactId>
-  <version>0.2.0-RELEASE</version>
 </dependency>
 ```
 
@@ -332,12 +338,12 @@ Com isso terminamos nosso exemplo, fique a vontade para incrementar o exemplo ut
 
 > O conteúdo deste exemplo está em nosso repositório no [GitHub][github].
 
-[tjf-api-context]: https://tjf.totvs.com.br/wikiV020/tjf-api-context
+[tjf-api-context]: https://tjf.totvs.com.br/wiki/tjf-api-context
 [guia-api-totvs]: http://tdn.totvs.com/x/nDUxE
 [spring]: https://spring.io
 [spring-initializr]: https://start.spring.io
 [@RestController]: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RestController.html
-[apiguideline]: https://tjf.totvs.com.br/wikiV020/tjf-api-context#estereotipos
-[apicollectionresponse]: https://tjf.totvs.com.br/wikiV020/tjf-api-context#objetos-de-transferencia
-[apisortrequest]: https://tjf.totvs.com.br/wikiV020/tjf-api-context#objetos-de-transferencia
+[apiguideline]: https://tjf.totvs.com.br/wiki/tjf-api-context#estereotipos
+[apicollectionresponse]: https://tjf.totvs.com.br/wiki/tjf-api-context#objetos-de-transferencia
+[apisortrequest]: https://tjf.totvs.com.br/wiki/tjf-api-context#objetos-de-transferencia
 [github]: https://github.com/totvs/tjf-api-context-sample
